@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_id: 1
+  member_id: 1
+  booking_start: 2016-09-05 15:46:55
+
+two:
+  room_id: 1
+  member_id: 1
+  booking_start: 2016-09-05 15:46:55

@@ -1,0 +1,10 @@
+Library Members
+    - Email
+    - Name
+    - Password
+
+Rooms
+    - building (2)
+    - Size (3)
+
+        

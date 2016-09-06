@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root 'application#hello'
+  resources :bookings
+  resources :rooms
+  resources :members
+  root 'members#index'
   #get '/patients/:id', to: 'patients#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
