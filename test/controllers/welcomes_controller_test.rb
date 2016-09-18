@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class WelcomesControllerTest < ActionController::TestCase
-  test "should get home" do
-    get :home
+  test "should get login" do
+    get :login
     assert_response :success
   end
 
