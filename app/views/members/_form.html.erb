@@ -1,3 +1,4 @@
+  <!-- TODO - Handle the errors with better UI -->
 <%= form_for(@member) do |f| %>
   <% if @member.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +14,7 @@
 
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
   <div class="field">
     <%= f.label :name %><br>
@@ -21,7 +22,12 @@
   </div>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
+  </div>
+  <!-- TODO - Update the confirm_password to reflect "Confirm Password" instead of the current "Confirm password" -->
+  <div class="field">
+    <%= f.label :confirm_password %><br>
+    <%= f.password_field :password %>
   </div>
   <div class="actions">
     <%= f.submit %>
