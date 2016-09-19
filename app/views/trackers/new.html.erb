@@ -1,0 +1,19 @@
+<h1>User Sign In</h1>
+<p>Please Sign in</p>
+<p id="notice"><%= notice %></p>
+
+<%= form_for(:tracker) do |f| %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.email_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Sign In" %>
+  </div>
+
+<% end %>
