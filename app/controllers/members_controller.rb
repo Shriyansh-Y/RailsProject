@@ -4,6 +4,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
+    redirect_if_not_logged_in
     @members = Member.all
   end
 
@@ -24,13 +25,18 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    @member = Member.new(member_params)
+    if params[:member][:password] != params[:member][:confirm_password]
+      redirect_to new_member_path, notice: 'Mismatch in Passwords. Please try again.'
+    else
+      @member = Member.new(member_params)
 
-      if @member.save
-        redirect_to members_url, notice: 'Member was successfully created.'
-      else
-        render :new
-      end
+        if @member.save
+          log_in @member.id
+          redirect_to @member, notice: 'Member was successfully created.'
+        else
+          render :new
+        end
+    end
   end
 
   # PATCH/PUT /members/1
