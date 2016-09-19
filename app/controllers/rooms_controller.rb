@@ -27,13 +27,14 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
 
     if @room.
-    respond_to do |format|
-      if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
-      else
-        format.html { render :new }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @room.save
+          format.html { redirect_to @room, notice: 'Room was successfully created.' }
+          format.json { render :show, status: :created, location: @room }
+        else
+          format.html { render :new }
+          format.json { render json: @room.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
