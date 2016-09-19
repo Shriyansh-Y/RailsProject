@@ -26,6 +26,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
 
+    if @room.
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
