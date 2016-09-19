@@ -4,6 +4,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
+    redirect_if_not_logged_in
     @members = Member.all
   end
 

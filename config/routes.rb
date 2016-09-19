@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
-  get 'trackers/new'
-  post 'trackers/new', to: 'trackers#create'
   get 'welcomes/login'
+  get 'trackers/login', to: 'trackers#new'
+  post 'trackers/login', to: 'trackers#create'
+  get 'tracker/logout', to: 'trackers#destroy'
   get 'welcomes/home'
   resources :bookings
   resources :rooms
