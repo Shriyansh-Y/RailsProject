@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
-  get 'welcomes/login'
-  get 'trackers/login', to: 'trackers#new'
-  post 'trackers/login', to: 'trackers#create'
+  # Welcome Page.
+  get 'trackers/login'
+
+  # Sign In get Page.
+  get 'trackers/new'
+
+  # Sign in Post page
+  post 'trackers/new', to: 'trackers#create'
+
+  # Sign out page.
   get 'tracker/logout', to: 'trackers#destroy'
-  get 'welcomes/home'
+
+  root 'trackers#login'
   resources :bookings
   resources :rooms
   resources :members
-  root 'welcomes#login'
 
 end
