@@ -10,4 +10,12 @@
   <%= @member.name %>
 </p>
 
-<%= link_to 'Edit', edit_member_path(@member) %> |
+<p>
+  <strong>Is Admin:</strong>
+  <%= @member.is_admin %>
+</p>
+
+<%= link_to 'Update Information', edit_member_path(@member) %>
+<%= if @member.is_admin %>
+  <%= link_to 'Create Rooms', new_room_path %>
+<%= end %>
