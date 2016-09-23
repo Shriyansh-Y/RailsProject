@@ -29,10 +29,11 @@ class MembersController < ApplicationController
       redirect_to new_member_path, notice: 'Mismatch in Passwords. Please try again.'
     else
       @member = Member.new(member_params)
+      @member.is_admin = false
 
         if @member.save
           log_in @member.id
-          redirect_to @member, notice: 'Member was successfully created.'
+          redirect_to @member, notice: "Member was successfully created."
         else
           render :new
         end
@@ -56,6 +57,7 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
+    # TODO - Add a validation here for the super admin.
     @member.destroy
     respond_to do |format|
       format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
@@ -71,6 +73,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:email, :name, :password)
+      params.require(:member).permit(:email, :name, :password, :is_admin)
     end
 end
