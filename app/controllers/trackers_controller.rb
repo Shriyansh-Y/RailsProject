@@ -9,7 +9,7 @@ class TrackersController < ApplicationController
   end
 
   def create
-    @member = Member.find_by(email: params[:tracker][:email].downcase)
+    @member = Member.find_by(email: params[:tracker][:email].downcase, admin: params[:tracker][:admin] == "true")
     if @member
       if @member.authenticate(params[:tracker][:password])
         log_in @member.id
