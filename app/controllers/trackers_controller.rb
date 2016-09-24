@@ -15,7 +15,7 @@ class TrackersController < ApplicationController
         log_in @member.id
         redirect_to @member
       else
-        redirect_to trackers_new_path, notice: "Wrong password. Please try again #{params[:tracker][:is_admin]}"
+        redirect_to trackers_new_path, notice: "Wrong password. Please try again"
       end
     else
       redirect_to trackers_new_path, notice: 'Please check the E-mail address. E-mail address not regiested in the system'

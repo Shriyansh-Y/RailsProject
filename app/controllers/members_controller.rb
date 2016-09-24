@@ -13,31 +13,52 @@ class MembersController < ApplicationController
   def show
   end
 
+  def new_helper
+    @member = Member.new
+  end
+
   # GET /members/new
   def new
-    @member = Member.new
+    new_helper
+  end
+
+  def newadmin
+    new_helper
   end
 
   # GET /members/1/edit
   def edit
   end
 
-  # POST /members
-  # POST /members.json
-  def create
+  def create_helper (admin)
     if params[:member][:password] != params[:member][:confirm_password]
       redirect_to new_member_path, notice: 'Mismatch in Passwords. Please try again.'
     else
       @member = Member.new(member_params)
-      @member.is_admin = false
+      @member.admin = admin
 
+        byebug
         if @member.save
-          log_in @member.id
-          redirect_to @member, notice: "Member was successfully created."
+          if @member.admin
+            redirect_to logged_in_user, notice: "Admin was successfully created."
+          else
+            log_in @member.id
+            redirect_to logged_in_user, notice: "Member was successfully created."
+          end
         else
           render :new
         end
     end
+  end
+
+  # POST /members
+  # POST /members.json
+  def create
+    create_helper false
+  end
+
+  def createadmin
+    create_helper true
   end
 
   # PATCH/PUT /members/1
@@ -57,11 +78,14 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    # TODO - Add a validation here for the super admin.
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
+    if @member.email == "admin@admin.com"
+      redirect_to logged_in_user, notice: "Cannot Delete SuperUser."
+    else
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -73,6 +97,6 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:email, :name, :password, :is_admin)
+      params.require(:member).permit(:email, :name, :password, :admin)
     end
 end
