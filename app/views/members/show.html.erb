@@ -12,11 +12,14 @@
 
 <%= link_to 'Update Information', edit_member_path(@member) %>
 <% if @member.admin %>
+
   <%= link_to 'Create Rooms', new_room_path %>
   <%= link_to 'Manage Library Members', members_path %>
   <%= link_to 'Create New Admins', members_new_admin_path %>
   <%= link_to 'Create New Member', new_member_path %>
   <%= link_to 'Book Room For A Member ', new_room_path %>
-  <%= link_to 'Book Room', new_room_path %>
+  <%= link_to 'View History Of User', new_room_path %>
+  <%= link_to 'View History Of Room', new_room_path %>
 
 <% end %>
+  <%= link_to 'Book Room', new_booking_path %>
