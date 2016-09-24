@@ -1,9 +1,9 @@
 module RoomsHelper
 
-  @@building_hash={0=>'D.H.Hill', 1=>'James.B.Hunt'}
+  BUILDING_HASH={0=>'D.H.Hill', 1=>'James.B.Hunt'}
 
   def get_building (building_id)
-    @@building_hash[building_id]
+    BUILDING_HASH[building_id]
   end
 
 end

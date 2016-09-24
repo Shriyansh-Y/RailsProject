@@ -1,11 +1,81 @@
 module BookingsHelper
 
   SEVEN_DAYS_SECONDS = 604800
+  VALID_HOUR_VALUES = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22]
 
-  def endTime
+  MONTH_ID_TO_MONTH = { 1 => "January",
+                        2 => "February",
+                        3 => "March",
+                        4 => "April", 
+                        5 => "May",
+                        6 => "June",
+                        7 => "July",
+                        8 => "August",
+                        9 => "September",
+                        10 => "October",
+                        11 => "November",
+                        12 => "December"}
+
+  
+  # Returns the 
+  # 1) Array of years to be used
+  # 2) Array of months to be used
+  # 3) Array of days to be used
+  # 4) Array of hours to be used. - TODO - Prevent the user from selecting
+  # a past hour for the current day.
+  def start_and_end_time
     current_time = Time.new
-    current_time+= SEVEN_DAYS_SECONDS
-    #[current_time.year, current_time.strftime("%B"), current_time.day]
+    end_time = current_time + SEVEN_DAYS_SECONDS
+    years = [current_time.year, end_time.year].uniq
+    end_time.end_of_month.day
+    end_time.day
+
+    days = []
+    if current_time.month != end_time.month
+      months = [[current_time.strftime("%B"), current_time.month], 
+        [end_time.strftime("%B"), end_time.month]]
+
+      # Add all the indexes from the current date to the end of the month.
+      (current_time.day .. current_time.end_of_month.day).each do |day|
+        days << day
+      end
+
+      # add all the indexes from the start of the month to the end day.
+      (1 .. end_time.day).each do |day|
+        days << day
+      end
+
+    else
+      months = [[current_time.strftime("%B"), current_time.month]]
+      (current_time.day .. end_time.day).each do |day|
+        days << day
+      end
+    end
+
+    return years, months, days, VALID_HOUR_VALUES
   end
 
+  # method for validating the time inputs that are provided are not
+  # past time and date. TODO
+  def time_validator (year, month, day, hour)
+    current_time = Time.new
+
+    # The following code logic will set the current hour to the previous 
+    # time slot. For example, 13 is set to 12 and 6 is set to 6.
+    return (Time.new(current_time.year, current_time.month, current_time.day, current_time.hour - (current_time.hour % 2)) <=
+            Time.new(year, month, day, hour))
+
+  end
+
+  # To merge all the time and date variable to a single string
+  def convert_start_time_to_dateTime (booking)
+    "#{booking.booking_start_day}-#{MONTH_ID_TO_MONTH[booking.booking_start_month]}-#{booking.booking_start_year} at 
+     #{booking.booking_start_hour}:00"
+  end
+
+  # To merge all the time and date variable to a single string
+  def convert_end_time_to_dateTime (booking)
+    "#{booking.booking_start_day}-#{MONTH_ID_TO_MONTH[booking.booking_start_month]}-#{booking.booking_start_year} at 
+     #{booking.booking_start_hour+2}:00"
+  end
 end

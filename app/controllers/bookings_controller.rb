@@ -13,8 +13,31 @@ class BookingsController < ApplicationController
   def show
   end
 
+  def history_for_current
+    @bookings = Booking.where(member_id: logged_in_user.id)
+    byebug
+  end
+
+  def new_history_for_room
+  end
+
+  def history_for_room
+    @bookings = Booking.all
+  end
+
+  def new_history_for_selection
+  end
+
+  def history_with_selection
+    @bookings = Booking.all
+  end
+
   # GET /bookings/new
   def new
+    @booking = Booking.new
+  end
+
+  def new_by_admin
     @booking = Booking.new
   end
 
@@ -25,17 +48,11 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    create_helper new_booking_path
+  end
 
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
+  def create_by_admin
+    create_helper bookings_new_by_admin_path
   end
 
   # PATCH/PUT /bookings/1
@@ -70,6 +87,27 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:room_id, :member_id, :booking_start)
+      params.require(:booking).permit(:room_id, :member_id, :booking_start_year, :booking_start_month, :booking_start_day, :booking_start_hour)
     end
+
+    def create_helper (path_to_new)
+      booking_hash = params[:booking]
+      if time_validator booking_hash[:booking_start_year], booking_hash[:booking_start_month], booking_hash[:booking_start_day], booking_hash[:booking_start_hour]
+        @booking = Booking.new(booking_params)
+
+        respond_to do |format|
+          if @booking.save
+            format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+            format.json { render :show, status: :created, location: @booking }
+          else
+            format.html { render :new }
+            format.json { render json: @booking.errors, status: :unprocessable_entity }
+          end
+        end
+      else
+        redirect_to path_to_new, notice: 'Past Time Provided'
+      end
+    end
+
+
 end
