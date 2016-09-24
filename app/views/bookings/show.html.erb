@@ -12,7 +12,12 @@
 
 <p>
   <strong>Booking start:</strong>
-  <%= convert_time_to_dateTime @booking %>
+  <%= convert_start_time_to_dateTime @booking %>
+</p>
+
+<p>
+  <strong>Booking end:</strong>
+  <%= convert_end_time_to_dateTime @booking %>
 </p>
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |

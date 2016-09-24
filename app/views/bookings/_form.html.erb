@@ -1,4 +1,4 @@
-<%= form_for(@booking) do |f| %>
+<%= form_for(@booking, url: form_path) do |f| %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -15,10 +15,14 @@
     <%= f.label :room_number %>
     <%= f.collection_select(:room_id, Room.all, :id, :room_number)%> 
   </div>
+  <% if display_members %>
   <div class="field">
     <%= f.label :member_email %>
     <%= f.collection_select(:member_id, Member.all, :id, :email)%> 
   </div>
+  <% else %>
+    <%= f.hidden_field :member_id, :value => logged_in_user.id %>
+  <% end %>
 
   <% years, months, days, hours = start_and_end_time %>
   <div class="field">
@@ -37,8 +41,9 @@
   </div>
 
   <div class="field">
-    <%= f.label :booking_start_hour %>
+    <%= f.label  "Booking start hour" %>
     <%= f.select :booking_start_hour, options_for_select(hours) %>
+    <%= f.label  "(*Bookings are made for 2 hour slots from the start time chosen)" %>
   </div>
 
   <div class="actions">
