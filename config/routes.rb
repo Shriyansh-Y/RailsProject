@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   root 'trackers#login'
   resources :bookings
   resources :rooms
-  get 'members/newadmin'
-  post 'members/newadmin', to: 'members#createadmin'
+  get 'members/new_admin'
+  post 'members/new_admin', to: 'members#create_admin'
   resources :members
 
 end
