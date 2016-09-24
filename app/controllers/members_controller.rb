@@ -22,7 +22,7 @@ class MembersController < ApplicationController
     new_helper
   end
 
-  def newadmin
+  def new_admin
     new_helper
   end
 
@@ -57,7 +57,7 @@ class MembersController < ApplicationController
     create_helper false
   end
 
-  def createadmin
+  def create_admin
     create_helper true
   end
 
