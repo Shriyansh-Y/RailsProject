@@ -1,11 +1,47 @@
 module BookingsHelper
 
   SEVEN_DAYS_SECONDS = 604800
-
-  def endTime
+  VALID_HOUR_VALUES = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24]
+  
+  # Returns the 
+  # 1) Array of years to be used
+  # 2) Array of months to be used
+  # 3) Array of days to be used
+  # 4) Array of hours to be used. - TODO - Prevent the user from selecting
+  # a past hour for the current day.
+  def start_and_end_time
     current_time = Time.new
-    current_time+= SEVEN_DAYS_SECONDS
-    #[current_time.year, current_time.strftime("%B"), current_time.day]
-  end
+    end_time = current_time + SEVEN_DAYS_SECONDS
+    years = [current_time.year, end_time.year].uniq
+    end_time.end_of_month.day
+    end_time.day
 
+    days = []
+    if current_time.month != end_time.month
+      months = [current_time.strftime("%B"), end_time.strftime("%B")]
+
+      # Add all the indexes from the current date to the end of the month.
+      (current_time.day .. current_time.end_of_month.day).each do |day|
+        days << day
+      end
+
+      # add all the indexes from the start of the month to the end day.
+      (1 .. end_time.day).each do |day|
+        days << day
+      end
+
+    else
+      months = [current_time.strftime("%B")]
+      (current_time.day .. end_time.day).each do |day|
+        days << day
+      end
+    end
+
+    # TODO - Do not include the current day if current time is over 
+    # the last interval of the day. Add otherwise.
+    if current_time.hour > 22
+      days.delete(current_time.day)
+    end
+    return years, months, days, VALID_HOUR_VALUES
+  end
 end

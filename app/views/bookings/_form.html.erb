@@ -12,18 +12,37 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :room_number %>
     <%= f.collection_select(:room_id, Room.all, :id, :room_number)%> 
   </div>
   <div class="field">
-    <%= f.label :member_id %><br>
-    <%= f.number_field :member_id %>
+    <%= f.label :member_email %>
+    <%= f.collection_select(:member_id, Member.all, :id, :email)%> 
   </div>
-  <%= end_time = endTime %>
+
+  <% years, months, days, hours = start_and_end_time %>
   <div class="field">
-    <%= f.label :booking_start %><br>
-    <%= f.datetime_field :booking_start, end_time %>
+    <%= f.label :booking_year %>
+    <%= f.select :booking_start, options_for_select(years) %>
   </div>
+
+  <div class="field">
+    <%= f.label :booking_month %>
+    <%= f.select :booking_start, options_for_select(months) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :booking_days %>
+    <%= f.select :booking_start, options_for_select(days) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :booking_hours %>
+    <%= f.select :booking_start, options_for_select(hours) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
