@@ -87,7 +87,6 @@ class BookingsController < ApplicationController
 
   def create_room_by_building
     redirect_to bookings_book_by_building_path(Room.find(params[:booking][:room_id]).building)
-    byebug
   end
 
   def book_by_building
@@ -132,7 +131,6 @@ class BookingsController < ApplicationController
   end
 
   def update_by_admin
-    byebug
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }

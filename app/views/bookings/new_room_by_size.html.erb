@@ -15,7 +15,6 @@
 
   <div class="field">
     <%= f.label :room_size %>
-    <% byebug %>
     <%= f.collection_select(:room_id, Room.group(:capacity), :id, :capacity)%> 
   </div>
 
