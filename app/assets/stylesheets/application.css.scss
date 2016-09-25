@@ -1,0 +1,37 @@
+@import "bootstrap";
+@import "bootstrap-sprockets";
+
+.navbar {
+    padding: 10px;
+    padding-bottom: 15px;
+    margin-bottom: 18px;
+    background-color: Yellow;
+}
+
+body{ background-color: #BBBBBB; color: #BBBBBB}
+
+body,ul{font-family: Verdana, Helvetica;
+    line-height: 20px;
+}
+
+#menu {
+    width: 90%;
+    height: 35px;
+    font-size: 16px;
+    font-family: Verdana;
+    font-weight: bold;
+    text-align: center;
+    background-color: #8AD9FF;
+    border-radius: 8px;
+}
+
+#menu ul {
+    height: auto;
+    padding: 8px 0px;
+    margin: 5px;
+}
+
+#menu li {
+    display: inline;
+    padding: 20px;
+}
