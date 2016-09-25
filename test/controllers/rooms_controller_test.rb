@@ -44,6 +44,8 @@ class RoomsControllerTest < ActionController::TestCase
       delete :destroy, id: @room
     end
 
+
+
     assert_redirected_to rooms_path
   end
 end

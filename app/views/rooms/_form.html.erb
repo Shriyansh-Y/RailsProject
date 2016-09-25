@@ -17,11 +17,11 @@
   </div>
   <div class="field">
     <%= f.label :capacity %><br>
-    <%= f.number_field :capacity %>
+    <%= f.select :capacity, ['small-4 chairs','medium-6 chairs','large-12 chairs']%>
   </div>
   <div class="field">
     <%= f.label :building %><br>
-    <%= f.number_field :building %>
+    <%= f.select :building, ['D.H. Hill','Hunt'] %>
   </div>
   <div class="actions">
     <%= f.submit %>

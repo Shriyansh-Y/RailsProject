@@ -31,7 +31,7 @@ class MembersController < ApplicationController
       @member = Member.new(member_params)
 
         if @member.save
-          log_in @member.id
+          log_in @member
           redirect_to @member, notice: 'Member was successfully created.'
         else
           render :new
