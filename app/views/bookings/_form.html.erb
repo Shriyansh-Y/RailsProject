@@ -14,7 +14,6 @@
   <div class="field">
     <%= f.label :room_number %>
     <%= f.collection_select(:room_id, Room.all, :id, :get_name_building)%> 
-    <% byebug %>
   </div>
 
   <% if display_members %>
