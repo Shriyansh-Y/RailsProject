@@ -31,5 +31,7 @@
 
 <% end %>
 <h3> Book My Room and History </h3>
-  <%= link_to 'Book Room', new_booking_path %> <br>
+  <%= link_to 'Book Room By Room Number', new_booking_path %> <br>
+  <%= link_to 'Book Room By Room Size', bookings_new_room_by_size_path %> <br>
+  <%= link_to 'Book Room By Building', bookings_new_room_by_building_path %> <br>
   <%= link_to 'View My Booking History', bookings_history_for_current_path %> <br>

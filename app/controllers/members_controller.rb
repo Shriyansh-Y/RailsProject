@@ -1,6 +1,13 @@
 class MembersController < ApplicationController
   include MembersHelper
-  before_action :redirect_if_not_logged_in
+  before_action :redirect_if_not_logged_in,
+    only: [:index,
+           :index_admin,
+           :show,
+           :new_admin,
+           :edit,
+           :create_admin,
+           :destroy]
   before_action :set_member, only: [:show, :edit, :update, :destroy]
   before_action :redirect_to_home_if_not_admin, 
     only: [:index,

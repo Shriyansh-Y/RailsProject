@@ -1,0 +1,26 @@
+<h2>Book By Building</h2>
+<p id="notice"><%= notice %></p>
+<%= form_for(@booking, url: bookings_new_room_by_building_path) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :room_building %>
+    <% byebug %>
+    <%= f.collection_select(:room_id, Room.group(:building), :id, :get_building_for_self)%> 
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Seach For Rooms" %>
+  </div>
+
+<% end %>

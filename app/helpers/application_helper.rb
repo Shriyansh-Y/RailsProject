@@ -13,7 +13,7 @@ module ApplicationHelper
     end
   end
   def logged_in_user
-    Member.find(session[:id])
+    !session[:id].nil? && Member.find(session[:id])
   end
   def redirect_to_home_if_logged_in
     if logged_in?

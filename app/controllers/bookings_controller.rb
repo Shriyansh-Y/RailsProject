@@ -64,6 +64,41 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
+  def new_room_by_size
+    @booking = Booking.new
+  end
+
+  def create_room_by_size
+    redirect_to bookings_book_by_size_path(Room.find(params[:booking][:room_id]).capacity)
+  end
+
+  def book_by_size
+    @booking = Booking.new
+    @rooms = Room.where(capacity: params[:format])
+  end
+
+  def create_book_by_size
+    create_helper bookings_new_room_by_size_path
+  end
+
+  def new_room_by_building
+    @booking = Booking.new
+  end
+
+  def create_room_by_building
+    redirect_to bookings_book_by_building_path(Room.find(params[:booking][:room_id]).building)
+    byebug
+  end
+
+  def book_by_building
+    @booking = Booking.new
+    @rooms = Room.where(building: params[:format])
+  end
+
+  def create_book_by_building
+    create_helper bookings_new_room_by_building_path
+  end
+
   # GET /bookings/1/edit
   def edit
   end

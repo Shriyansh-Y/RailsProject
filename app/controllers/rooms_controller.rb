@@ -45,6 +45,10 @@ class RoomsController < ApplicationController
     @room = Room.new
   end
 
+  def new_room_by_size
+    @room = Room.new
+  end
+
   # GET /rooms/1/edit
   def edit
   end
@@ -88,6 +92,10 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def is_matching_size (size)
+    return Room.where(room_size: size)
   end
 
   private
