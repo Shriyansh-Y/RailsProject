@@ -16,12 +16,20 @@
     <%= f.text_field :room_number %>
   </div>
   <div class="field">
-    <%= f.label :capacity %><br>
-    <%= f.select :capacity, ['small-4 chairs','medium-6 chairs','large-12 chairs']%>
+    <%= f.label :capacity %> <br>
+    <%= f.radio_button :capacity, '4'  %>
+    <%= label :capacity_4, '4 chairs' %> <br>
+    <%= f.radio_button :capacity, '6'  %>
+    <%= label :capacity_6, '6 chairs' %> <br>
+    <%= f.radio_button :capacity, '12'  %>
+    <%= label :capacity_12, '12 chairs' %> <br>
   </div>
   <div class="field">
-    <%= f.label :building %><br>
-    <%= f.select :building, ['D.H. Hill','Hunt'] %>
+    <%= f.label :building %> <br>
+    <%= f.radio_button :building, '0'  %>
+    <%= label :building_four, "D.H.Hill" %> <br>
+    <%= f.radio_button :building, '1'  %>
+    <%= label :building_four, 'James.B.Hunt' %> <br>
   </div>
   <div class="actions">
     <%= f.submit %>

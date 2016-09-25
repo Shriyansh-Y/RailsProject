@@ -2,18 +2,22 @@
 
 <p>
   <strong>Room:</strong>
-  <%= @booking.room_id %>
+  <%= Room.find(@booking.room_id).room_number %>
 </p>
 
 <p>
   <strong>Member:</strong>
-  <%= @booking.member_id %>
+  <%= Member.find(@booking.member_id).email %>
 </p>
 
 <p>
   <strong>Booking start:</strong>
-  <%= @booking.booking_start %>
+  <%= convert_start_time_to_dateTime @booking %>
 </p>
 
-<%= link_to 'Edit', edit_booking_path(@booking) %> |
-<%= link_to 'Back', bookings_path %>
+<p>
+  <strong>Booking end:</strong>
+  <%= convert_end_time_to_dateTime @booking %>
+</p>
+
+<%= link_to 'Edit', edit_booking_path(@booking) %>
