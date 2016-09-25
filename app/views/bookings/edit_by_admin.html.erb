@@ -1,0 +1,6 @@
+<h2>Editing Booking</h2>
+<p id="notice"><%= notice %></p>
+
+<%= render 'form', form_path: {:action => "update_by_admin", :id => @booking.id, :controller => "bookings"}, display_members: true %>
+
+<%= link_to 'Show', @booking %>

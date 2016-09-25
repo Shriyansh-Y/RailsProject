@@ -26,10 +26,17 @@ Rails.application.routes.draw do
   get 'bookings/history_for_room'
   
   get 'bookings/history_for_current'
+
+  get 'bookings/edit_by_admin'
+  put 'bookings/edit_by_admin', to: 'bookings#update_by_admin'
+  patch 'bookings/edit_by_admin', to: 'bookings#update_by_admin'
   resources :bookings
+
   resources :rooms
+
   get 'members/new_admin'
   post 'members/new_admin', to: 'members#create_admin'
+  get 'members/index_admin'
   resources :members
 
 end

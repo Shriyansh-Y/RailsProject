@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h3> Personal Information </h3>
 <p>
   <strong>Email:</strong>
   <%= @member.email %>
@@ -13,14 +14,22 @@
 <%= link_to 'Update Information', edit_member_path(@member) %> <br>
 <% if @member.admin %>
 
+<h3> Manage Rooms </h3>
   <%= link_to 'Create Rooms', new_room_path %> <br>
-  <%= link_to 'Manage Library Members', members_path %> <br>
+  <%= link_to 'List Rooms', rooms_path %> <br>
+
+<h3> Manage Members and Admins </h3>
+  <%= link_to 'Library Members', members_path %> <br>
+  <%= link_to 'Admin Members', members_index_admin_path %> <br>
   <%= link_to 'Create New Admins', members_new_admin_path %> <br>
   <%= link_to 'Create New Member', new_member_path %> <br>
   <%= link_to 'Book Room For A Member ', bookings_new_by_admin_path %> <br>
+
+<h3> Booking History </h3>
   <%= link_to 'View History Of User', bookings_new_history_for_selection_path %> <br>
   <%= link_to 'View History Of Room', bookings_new_history_for_room_path %> <br>
 
 <% end %>
+<h3> Book My Room and History </h3>
   <%= link_to 'Book Room', new_booking_path %> <br>
-  <%= link_to 'View My History', bookings_history_for_current_path %> <br>
+  <%= link_to 'View My Booking History', bookings_history_for_current_path %> <br>
