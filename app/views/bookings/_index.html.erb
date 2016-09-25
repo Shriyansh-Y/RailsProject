@@ -1,0 +1,40 @@
+
+<table>
+  <thead>
+    <tr>
+      <th>Room Number</th>
+      <th>Building</th>
+      <th>Member</th>
+      <th>Booking start</th>
+      <th>Booking end</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% year, month, day, hour = base_time_for_slot %>
+    <% base_time = Time.new(year, month, day, hour) %>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <% room = Room.find(booking.room_id) %>
+        <td><%= room.room_number %></td>
+        <td><%= get_building room.building %></td>
+        <td><%= Member.find(booking.member_id).email %></td>
+        <td><%= convert_start_time_to_dateTime booking %></td>
+        <td><%= convert_end_time_to_dateTime booking %></td>
+        <td><%= link_to 'Show', booking %></td>
+        <% if base_time <= Time.new(booking.booking_start_year, booking.booking_start_month, booking.booking_start_day, booking.booking_start_hour) %>
+        <% if admin_edit %>
+        <td><%= link_to 'Edit', bookings_edit_by_admin_path(booking) %></td>
+        <% else %>
+        <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <% end %>
+        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

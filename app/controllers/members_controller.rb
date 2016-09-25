@@ -1,11 +1,21 @@
 class MembersController < ApplicationController
+  include MembersHelper
+  before_action :redirect_if_not_logged_in
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_home_if_not_admin, 
+    only: [:index,
+           :new_admin,
+           :create_admin,
+           :destroy]
 
   # GET /members
   # GET /members.json
   def index
-    redirect_if_not_logged_in
-    @members = Member.all
+    @members = Member.where(admin: false)
+  end
+
+  def index_admin
+    @members = Member.where(admin: true)
   end
 
   # GET /members/1
@@ -15,7 +25,11 @@ class MembersController < ApplicationController
 
   # GET /members/new
   def new
-    @member = Member.new
+    new_helper
+  end
+
+  def new_admin
+    new_helper
   end
 
   # GET /members/1/edit
@@ -25,19 +39,11 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    if params[:member][:password] != params[:member][:confirm_password]
-      redirect_to new_member_path, notice: 'Mismatch in Passwords. Please try again.'
-    else
-      @member = Member.new(member_params)
-      @member.is_admin = false
+    create_helper false
+  end
 
-        if @member.save
-          log_in @member.id
-          redirect_to @member, notice: "Member was successfully created."
-        else
-          render :new
-        end
-    end
+  def create_admin
+    create_helper true
   end
 
   # PATCH/PUT /members/1
@@ -57,11 +63,15 @@ class MembersController < ApplicationController
   # DELETE /members/1
   # DELETE /members/1.json
   def destroy
-    # TODO - Add a validation here for the super admin.
-    @member.destroy
-    respond_to do |format|
-      format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
-      format.json { head :no_content }
+    if @member.email == "admin@admin.com"
+      redirect_to logged_in_user, notice: "Cannot Delete SuperUser."
+    else
+      Booking.where(member_id: @member.id).destroy_all
+      @member.destroy
+      respond_to do |format|
+        format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -73,6 +83,32 @@ class MembersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def member_params
-      params.require(:member).permit(:email, :name, :password, :is_admin)
+      params.require(:member).permit(:email, :name, :password, :admin)
     end
+
+    def create_helper (admin)
+      if params[:member][:password] != params[:member][:confirm_password]
+        redirect_to new_member_path, notice: 'Mismatch in Passwords. Please try again.'
+      else
+        @member = Member.new(member_params)
+        @member.admin = admin
+
+        if @member.save
+          if @member.admin
+            redirect_to logged_in_user, notice: "Admin was successfully created."
+          else
+            log_in @member.id
+            redirect_to logged_in_user, notice: "Member was successfully created."
+          end
+        else
+          render :new
+        end
+      end
+    end
+
+    def new_helper
+      @member = Member.new
+    end
+
+
 end

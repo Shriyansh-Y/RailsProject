@@ -5,4 +5,5 @@ class Room < ActiveRecord::Base
   def self.search(search)
     where("room_number LIKE ? OR capacity LIKE ? OR building LIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
   end
+  validates_uniqueness_of :room_number, :scope => [:building]
 end
