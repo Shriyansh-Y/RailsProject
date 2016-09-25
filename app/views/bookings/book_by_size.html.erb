@@ -1,4 +1,6 @@
-<%= form_for(@booking, url: form_path) do |f| %>
+<h2>Room Reservation per Size</h2>
+<p id="notice"><%= notice %></p>
+<%= form_for(@booking, url: bookings_book_by_size_path) do |f| %>
   <% if @booking.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -13,18 +15,10 @@
 
   <div class="field">
     <%= f.label :room_number %>
-    <%= f.collection_select(:room_id, Room.all, :id, :get_name_building)%> 
-    <% byebug %>
+    <%= f.collection_select(:room_id, @rooms, :id, :get_name_building)%> 
   </div>
 
-  <% if display_members %>
-  <div class="field">
-    <%= f.label :member_email %>
-    <%= f.collection_select(:member_id, Member.all, :id, :email)%> 
-  </div>
-  <% else %>
     <%= f.hidden_field :member_id, :value => logged_in_user.id %>
-  <% end %>
 
   <% years, months, days, hours = start_and_end_time %>
   <div class="field">

@@ -30,6 +30,17 @@ Rails.application.routes.draw do
   get 'bookings/edit_by_admin'
   put 'bookings/edit_by_admin', to: 'bookings#update_by_admin'
   patch 'bookings/edit_by_admin', to: 'bookings#update_by_admin'
+
+  get 'bookings/new_room_by_size'
+  post 'bookings/new_room_by_size', to: 'bookings#create_room_by_size'
+  get 'bookings/book_by_size'
+  post 'bookings/book_by_size', to: 'bookings#create_book_by_size'
+
+  get 'bookings/new_room_by_building'
+  post 'bookings/new_room_by_building', to: 'bookings#create_room_by_building'
+  get 'bookings/book_by_building'
+  post 'bookings/book_by_building', to: 'bookings#create_book_by_building'
+
   resources :bookings
 
   resources :rooms
