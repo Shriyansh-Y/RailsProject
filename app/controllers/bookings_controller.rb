@@ -1,7 +1,7 @@
 class BookingsController < ApplicationController
   include BookingsHelper
   before_action :redirect_if_not_logged_in
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: [:show, :edit, :update, :destroy, :update_by_admin]
   before_action :redirect_to_home_if_not_admin, 
     only: [:index,
            :new_history_for_room,
@@ -9,6 +9,8 @@ class BookingsController < ApplicationController
            :history_for_room,
            :new_history_for_selection,
            :new_by_admin,
+           :edit_by_admin,
+           :update_by_admin,
            :create_by_admin]
 
 
@@ -66,6 +68,10 @@ class BookingsController < ApplicationController
   def edit
   end
 
+  def edit_by_admin
+    @booking = Booking.find(params[:format])
+  end
+
   # POST /bookings
   # POST /bookings.json
   def create
@@ -79,6 +85,19 @@ class BookingsController < ApplicationController
   # PATCH/PUT /bookings/1
   # PATCH/PUT /bookings/1.json
   def update
+    respond_to do |format|
+      if @booking.update(booking_params)
+        format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }
+        format.json { render :show, status: :ok, location: @booking }
+      else
+        format.html { render :edit }
+        format.json { render json: @booking.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def update_by_admin
+    byebug
     respond_to do |format|
       if @booking.update(booking_params)
         format.html { redirect_to @booking, notice: 'Booking was successfully updated.' }

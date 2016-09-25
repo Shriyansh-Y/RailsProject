@@ -24,7 +24,11 @@
         <td><%= convert_end_time_to_dateTime booking %></td>
         <td><%= link_to 'Show', booking %></td>
         <% if base_time <= Time.new(booking.booking_start_year, booking.booking_start_month, booking.booking_start_day, booking.booking_start_hour) %>
+        <% if admin_edit %>
+        <td><%= link_to 'Edit', bookings_edit_by_admin_path(booking) %></td>
+        <% else %>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+        <% end %>
         <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
