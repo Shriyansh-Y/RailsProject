@@ -1,3 +1,5 @@
+# The idea and logic for managing the session was referred from
+# https://www.railstutorial.org/book/basic_login.
 class TrackersController < ApplicationController
 
   def login
