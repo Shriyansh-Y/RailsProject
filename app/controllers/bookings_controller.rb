@@ -1,6 +1,16 @@
 class BookingsController < ApplicationController
   include BookingsHelper
+  before_action :redirect_if_not_logged_in
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_home_if_not_admin, 
+    only: [:index,
+           :new_history_for_room,
+           :prepare_history_for_room,
+           :history_for_room,
+           :new_history_for_selection,
+           :new_by_admin,
+           :create_by_admin]
+
 
   # GET /bookings
   # GET /bookings.json
