@@ -18,10 +18,12 @@ Rails.application.routes.draw do
   post 'bookings/new_by_admin', to: 'bookings#create_by_admin'
 
   get 'bookings/new_history_for_selection'
-  post 'bookings/new_history_for_selection', to: 'bookings#history_with_selection'
+  post 'bookings/new_history_for_selection', to: 'bookings#prepare_history_for_selection'
+  get 'bookings/history_for_selection'
 
   get 'bookings/new_history_for_room'
-  post 'bookings/new_history_for_room', to: 'bookings#history_for_room'
+  post 'bookings/new_history_for_room', to: 'bookings#prepare_history_for_room'
+  get 'bookings/history_for_room'
   
   get 'bookings/history_for_current'
   resources :bookings
