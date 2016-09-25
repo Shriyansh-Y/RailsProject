@@ -11,7 +11,11 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
+    @members = Member.where(admin: false)
+  end
+
+  def index_admin
+    @members = Member.where(admin: true)
   end
 
   # GET /members/1
@@ -62,6 +66,7 @@ class MembersController < ApplicationController
     if @member.email == "admin@admin.com"
       redirect_to logged_in_user, notice: "Cannot Delete SuperUser."
     else
+      Booking.where(member_id: @member.id).destroy_all
       @member.destroy
       respond_to do |format|
         format.html { redirect_to members_url, notice: 'Member was successfully destroyed.' }

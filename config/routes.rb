@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :rooms
   get 'members/new_admin'
   post 'members/new_admin', to: 'members#create_admin'
+  get 'members/index_admin'
   resources :members
 
 end
