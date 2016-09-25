@@ -15,21 +15,32 @@ class BookingsController < ApplicationController
 
   def history_for_current
     @bookings = Booking.where(member_id: logged_in_user.id)
-    byebug
   end
 
   def new_history_for_room
+    @booking = Booking.new
+  end
+
+  def prepare_history_for_room
+    redirect_to bookings_history_for_room_path(params[:booking][:room_id])
   end
 
   def history_for_room
-    @bookings = Booking.all
+    # this method expects the room id to be sent from the caller.
+    @bookings = Booking.where(room_id: params[:format])
   end
 
   def new_history_for_selection
+    @booking = Booking.new
   end
 
-  def history_with_selection
-    @bookings = Booking.all
+  def prepare_history_for_selection
+    redirect_to bookings_history_for_selection_path(params[:booking][:member_id])
+  end
+
+  def history_for_selection
+    # this method expects the room id to be sent from the caller.
+    @bookings = Booking.where(member_id: params[:format])
   end
 
   # GET /bookings/new
