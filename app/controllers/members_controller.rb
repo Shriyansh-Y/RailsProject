@@ -1,11 +1,16 @@
 class MembersController < ApplicationController
   include MembersHelper
+  before_action :redirect_if_not_logged_in
   before_action :set_member, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_home_if_not_admin, 
+    only: [:index,
+           :new_admin,
+           :create_admin,
+           :destroy]
 
   # GET /members
   # GET /members.json
   def index
-    redirect_if_not_logged_in
     @members = Member.all
   end
 

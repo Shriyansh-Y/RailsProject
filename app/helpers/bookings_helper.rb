@@ -55,18 +55,6 @@ module BookingsHelper
     return years, months, days, VALID_HOUR_VALUES
   end
 
-  # method for validating the time inputs that are provided are not
-  # past time and date. TODO
-  def time_validator (year, month, day, hour)
-    current_time = Time.new
-
-    # The following code logic will set the current hour to the previous 
-    # time slot. For example, 13 is set to 12 and 6 is set to 6.
-    return (Time.new(current_time.year, current_time.month, current_time.day, current_time.hour - (current_time.hour % 2)) <=
-            Time.new(year, month, day, hour))
-
-  end
-
   # To merge all the time and date variable to a single string
   def convert_start_time_to_dateTime (booking)
     "#{booking.booking_start_day}-#{MONTH_ID_TO_MONTH[booking.booking_start_month]}-#{booking.booking_start_year} at 

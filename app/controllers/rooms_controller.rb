@@ -1,16 +1,43 @@
 class RoomsController < ApplicationController
   include RoomsHelper
+  before_action :redirect_if_not_logged_in
   before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :redirect_to_home_if_not_admin, 
+    only: [:index,
+           :new,
+           :edit,
+           :create,
+           :update,
+           :destroy]
 
   # GET /rooms
   # GET /rooms.json
   def index
     @rooms = Room.all
+
+    @rooms_status_hash = {}
+    year, month, day, hour = base_time_for_slot
+
+    @rooms.each do |room|
+      if is_room_available? room.id, year, month, day, hour
+        @rooms_status_hash[room.id] = "Available"
+      else
+        @rooms_status_hash[room.id] = "Booked"
+      end
+    end
+
   end
 
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+
+    year, month, day, hour = base_time_for_slot
+    if is_room_available? @room.id, year, month, day, hour
+      @status = "Available"
+    else
+      @status = "Booked"
+    end
   end
 
   # GET /rooms/new
@@ -71,5 +98,13 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:room_number, :capacity, :building)
+    end
+
+    def is_room_available? (id, year, month, day, hour)
+      Booking.find_by(room_id: id,
+                      booking_start_hour: hour,
+                      booking_start_day: day,
+                      booking_start_month: month,
+                      booking_start_year: year).nil?
     end
 end
