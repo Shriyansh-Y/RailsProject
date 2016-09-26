@@ -20,11 +20,11 @@ Things you may want to cover:
   2. For the registered users- the sign in option is on the first page. 
      (a) There is a checkbox to make sure that the preconfigured admin or the super admin can sign in using the same sign in form.
   3. Once the Admin logs in-
-     (a)Personal Information section lets him update his own information.
-     (b)In the Manage Rooms section-
+     (a) Personal Information section lets him update his own information.
+     (b) In the Manage Rooms section-
         (i) The admin can create a new room
         (ii) The admin can have a listing of all the rooms
-     (c)In the Manage Members section-
+     (c) In the Manage Members section-
         (i) The admin can see a listings of the library members.
         (ii) The admin can see a listings of the subordinate admins.
         (iii) The admin can create new Admins.
@@ -33,14 +33,14 @@ Things you may want to cover:
      (d) In the booking section-
         (i) The admin can view history of the user and make changes to it.
         (ii) The admin can view history of the rooms and make changes to it.
-     (e)  In the Book my room and History section-
+     (e) In the Book my room and History section-
         (i) The admin can search rooms by Room number.
         (ii) The admin can search rooms by Capacity.
         (iii) The admin can search rooms by Building.
         (iv) View the booking history.
    4. Once a Member logs in-
-      (a) In personal information section can update his user information.
-      (b) In the Book my Room section-
+     (a) In personal information section can update his user information.
+     (b) In the Book my Room section-
         (i)The user can search rooms by Room number.
         (ii) The user can search rooms by Capacity.
         (iii) The user can search rooms by Building.
