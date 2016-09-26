@@ -22,8 +22,8 @@ Things you may want to cover:
   3. Once the Admin logs in-
      (a) Personal Information section lets him update his own information.
      (b) In the Manage Rooms section-
-        (i) The admin can create a new room
-        (ii) The admin can have a listing of all the rooms
+        (i) The admin can create a new room.
+        (ii) The admin can have a listing of all the rooms.
      (c) In the Manage Members section-
         (i) The admin can see a listings of the library members.
         (ii) The admin can see a listings of the subordinate admins.
