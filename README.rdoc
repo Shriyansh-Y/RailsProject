@@ -14,6 +14,98 @@ Things you may want to cover:
   Email: admin@admin.com
   Password: adminadmin
 
+To Navigate through the app:
+  1. For admin login
+     UserName:admin@admin.com
+     Password: adminadmin
+  
+  2. To Edit Profile:
+     Use the "Update Information" in the homepage for the user.
+     
+  3. To Logout:
+     Use the "Sign Out" available on top of the page. This information is available in all the pages.
+     
+  4. To create another admin:
+     Use the "Create new Admins" present in the home page in the "Manage Members and Admins" section.
+     
+  5. To view the list of other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section.
+     
+  6. To view the details of other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
+     the admins that are present. To view the details of a particular admin, select the "show" that is present in the page.
+     
+  7. To delete the other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
+     the admins that are present. To delete the admin, select the "Destroy" option that is present on a per admin basis. Please note that this tag will not be present for the logged in admin and the super admin.
+     
+  8. To add rooms as admin:
+      Use the "Create Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to a page for filling out the new page related information.
+
+  9. To view the list of all the rooms:
+      Use the "List Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to the page where all the rooms are listed. 
+      
+  10. To view the details of a room:
+      Use the "List Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to the page where all the rooms are listed. In this page, select "show" that would display the details of the room.
+      
+  11. Can admin edit the details of the room: 
+      There are two parts for this. For the admin to edit a room information like the Room number, building, size etc, use the "List Rooms" present in the "Manager Rooms" section in the home page. This will redirect the admin to the page where all the rooms are listed. In this page, select "edit" to edit the above mentioned information.
+      
+      For updating the status from booked to available, the admin will have to remove the booking for a user. For this, select "View History Of Room" option from the home page. This will redirect the user to select the room and the history will be displayed for that room. The admin can then delete the upcoming bookings by using the "destroy" option for all the future and on going reservations. This way, the admin can change the status from booked to available.
+      
+      For updating the status from available to booked, the admin can select the option "Book Room By Room Number" from the home page under the "Book My Room and History" section and then book the room.
+      
+   12. Admin Creating a library Member:
+      Admin can create a library member by using the option "Create New Member" from the home page under the "Manage members and admins" section.
+      
+   13. Admin to see the list of other library members.
+       Admin can see the list of the other library members by selecting "Library Members" from the home page under the "Manage members and admins" section.
+       
+   14. Admin to view the details of a libary member.
+       Admin can see the list of the other library members by selecting "Library Members" from the home page under the "Manage members and admins" section. The admin can then select a library member from this list and see the details of the member.
+       
+   15. Admin to delete a library member:
+       Admin can see the list of the other library members by selecting "Library Members" from the home page under the "Manage members and admins" section. The admin can then select a library member from this list and the "destroy" option can be used to delete the member.
+       
+   16. Admin to view the booking history of a member:
+       To view the booking history of a member, use "View History Of User" option under "Booking History" section from the home page.
+       
+   17. Sign Up.
+       The first page that is loaded has a link towards the sign up page. The user can sign up from there.
+       
+   18. Logging In for a member.
+       The user is automatically logged in to the home page on sign up. If the user logs out, then the user can login in again with the details used to sign up in the login page.
+       
+   19. Updating Information for member
+        Use the "Update Information" in the homepage for the user.
+   
+   20. Logout for a member.
+       Use the "Sign Out" option present in the top of the page for signing out.
+       
+   21. Searching for Rooms:
+       Use the "Book Room By Room Number", "Book Room By Room Size" and "Book Room By Building" options to search for and book a room.
+       
+   22. Booking a room:
+       Use the "Book Room By Room Number", "Book Room By Room Size" and "Book Room By Building" options to search for and book a room.
+       
+   23: Canceling a reservation:
+       Select the "View My Booking History" option from the home page. This will redirect the user to the page where all the bookings for the user are listed. Select the "destroy" option to delete the reservation.
+       
+   24. Booking History For a Member:
+       The booking history for a member can be seen by selecting the "View My Booking History" option from the home page under the "Book My Room and History" section.
+       
+   25. Admin to deleting a room:
+        Use the "List Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to the page where all the rooms are listed. Use the "destroy" option to delete the room.
+        
+   26. Deleting a room  that has a reservation.
+       When the room is deleted, all the reservations for that room are deleted along with it. This can be verified by checking the Booking History of a user.
+       
+   27. Admin deleting a library member:
+       Use the "List Members" option in the home page under the "Manager Members and Admins" section. Select "destroy" for the user that needs to be deleted.
+       
+   28. Reservation details for a deleted library member:
+       The reservation details are deleted when the admin deletes a library member.
+
 * Flow of Execution
 
   1. For the new users- the sign up option is on the first page which is the create member form.
@@ -46,35 +138,7 @@ Things you may want to cover:
         (iii) The user can search rooms by Building.
         (iv) View the booking history.
 
-To Navigate through the app:
-  1. For admin login
-     UserName:admin@admin.com
-     Password: adminadmin
-  
-  2. To Edit Profile:
-     Use the "Update Information" in the homepage for the user.
      
-  3. To Logout:
-     Use the "Sign Out" available on top of the page. This information is available in all the pages.
-     
-  4. To create another admin:
-     Use the "Create new Admins" present in the home page in the "Manage Members and Admins" section.
-     
-  5. To view the list of other admins:
-     Use the "Admin members" present in the home page in the "Manage Members and Admins" section.
-     
-  6. To view the details of other admins:
-     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
-     the admins that are present. To view the details of a particular admin, select the "show" that is present in the page.
-     
-  7. To delete the other admins:
-     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
-     the admins that are present. To delete the admin, select the "Destroy" option that is present on a per admin basis. Please note that this tag will not be present for the logged in admin and the super admin.
-     
-  8. To add rooms as admin:
-      Use the "Create Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to a page for filling out the new page related information.
-
-
 References:
 
   The project has been developed using various resources such as:
