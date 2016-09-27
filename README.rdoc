@@ -45,7 +45,35 @@ Things you may want to cover:
         (ii) The user can search rooms by Capacity.
         (iii) The user can search rooms by Building.
         (iv) View the booking history.
-    
+
+To Navigate through the app:
+  1. For admin login
+     UserName:admin@admin.com
+     Password: adminadmin
+  
+  2. To Edit Profile:
+     Use the "Update Information" in the homepage for the user.
+     
+  3. To Logout:
+     Use the "Sign Out" available on top of the page. This information is available in all the pages.
+     
+  4. To create another admin:
+     Use the "Create new Admins" present in the home page in the "Manage Members and Admins" section.
+     
+  5. To view the list of other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section.
+     
+  6. To view the details of other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
+     the admins that are present. To view the details of a particular admin, select the "show" that is present in the page.
+     
+  7. To delete the other admins:
+     Use the "Admin members" present in the home page in the "Manage Members and Admins" section. This will list all
+     the admins that are present. To delete the admin, select the "Destroy" option that is present on a per admin basis. Please note that this tag will not be present for the logged in admin and the super admin.
+     
+  8. To add rooms as admin:
+      Use the "Create Rooms" present in the "Manage Rooms" section in the home page. This will redirect the admin to a page for filling out the new page related information.
+
 
 References:
 
