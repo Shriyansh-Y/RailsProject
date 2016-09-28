@@ -11,12 +11,12 @@ Things you may want to cover:
 * Deployment instructions
 
   The admin credentials are:
-  Email: admin@admin.com
+  Email: admin@me.com
   Password: adminadmin
 
 To Navigate through the app:
   1. For admin login
-     UserName:admin@admin.com
+     UserName:admin@me.com
      Password: adminadmin
   
   2. To Edit Profile:
